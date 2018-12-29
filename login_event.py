@@ -16,7 +16,6 @@ class LoginEvent():
         event_obj = event.EventObject
         event_obj.SetValue("")
 
-
         # print value
 
         id = event_obj.Id

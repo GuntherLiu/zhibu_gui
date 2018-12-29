@@ -1,6 +1,6 @@
 #encoding=utf-8
 from wx import App,Frame,Panel, Button, Font, GridSizer, TextCtrl, Image, StaticBitmap
-from wx import ROMAN, NORMAL, BITMAP_TYPE_PNG, EVT_LEFT_DOWN, EVT_CHAR, EVT_TEXT
+from wx import ROMAN, NORMAL, BITMAP_TYPE_PNG, EVT_LEFT_DOWN, EVT_CHAR, EVT_SET_FOCUS, EVT_KILL_FOCUS, EVT_CHILD_FOCUS
 from login_event import LoginEvent
 
 class Main_gui(App):
@@ -50,11 +50,12 @@ class Main_gui(App):
 
     def login_input(self):
         print "login msg"
-        self._input_username = TextCtrl(self._panel_login, 1,  pos=(100, 20), size=(200, 40))
-        self._input_username.SetLabel("请输入用户名：")
+        self._input_username = TextCtrl(self._panel_login, 1, "请输入用户名：",  pos=(100, 20), size=(200, 40))
         self._input_pwd = TextCtrl(self._panel_login, 2, "请输入密码：", pos=(100,60), size=(200, 40))
         self._input_captcha = TextCtrl(self._panel_login, 3,  "请输入验证码：", pos=(100, 100), size=(200, 40))
-        self._input_username.Bind(EVT_LEFT_DOWN, self._login_event.get_login_msg)
+        self._input_username.Bind(EVT_CHILD_FOCUS, self._login_event.get_login_msg)
+
+
 
     def login_captcha(self):
         print "login captcha"
